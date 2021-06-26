@@ -1,11 +1,14 @@
 <?php
+session_start();
 $useremail = $_POST["useremail"];
 $userpassword = $_POST["userpassword"];
 
 $username = validateUser($useremail,$userpassword);
 
-if($username!="")
-    echo "Welcome ".$username;
+if($username!=""){
+    $_SESSION["username"] = $username;
+    echo header("Location: shopping.php");
+}
 else
     echo "Login Failed";
 
